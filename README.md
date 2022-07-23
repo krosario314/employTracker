@@ -1,1 +1,26 @@
-# employTracker
+# Employee Tracker - MySQL
+![](./assets/Screen%20Shot%202022-07-22%20at%2011.28.04%20PM.png)
+#
+## Technologies used
+* Javascript 
+* MySQL 
+* Inquirer
+* Node.js
+#
+## What is this application?
+This application is a employee tracker so that businesses can keep track of their employess information.
+#
+## What does the application do?
+```
+AS A business owner
+I WANT to be able to view and manage the departments, roles, and employees in my company
+SO THAT I can organize and plan my business
+```
+#
+## How do you use the application?
+When the application is started the user is presented with options such as view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update employee role. When viewing all departments the user is presented with a formatted table showing department names and department ids. When viewing all roles the user is presented with the job title, role id, the department that role belongs to, and the salary for that role. When viewing all employees the user is presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to. When adding a department the user is prompted to enter the name of the department and that department is added to the database. When adding a role the user is prompted to enter the name, salary, and department for the role and that role is added to the database. When adding an employee the user is prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database. When updating an employee's role the user is prompted to select an employee to update and their new role and this information is updated in the database.
+#
+## Resources
+* [GitHub Repo](https://github.com/krosario314/employTracker)
+* [Kayla Rosario GitHub](https://github.com/krosario314)
+* [Video Submission]()
