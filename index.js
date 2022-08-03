@@ -7,4 +7,24 @@ const db = mysql.createConnection({
     password: ''
 })
 
-// 
+// connection to mysql
+db.connect(err => {
+    if(err) {
+        throw err 
+    }
+    console.log('MySQL Connection')
+})
+
+// connecting to express
+const app = express()
+
+// my database
+app.get('/createdb', (req, res) => {
+    let sql = 'CREATE DATABASE nodedbsql'
+    db.query(sql, err => {
+        if(err) {
+            throw err 
+        }
+        res.send('Database Created')
+    })
+})
