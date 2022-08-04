@@ -3,19 +3,19 @@ const consoleTable = require("console.table");
 const mysql = require("mysql2");
 
 // my connection
-const db = mysql.createConnection({
-  host: "localhost",
+const connection = mysql.createConnection({
+  host: "127.0.0.1",
   user: "root",
   password: "",
   database: "nodedbsql",
 });
 
 // connection to mysql
-db.connect((err) => {
+connection.connect((err) => {
   if (err) {
     throw err;
   }
-  console.log("MySQL Connection");
+  console.log("MySQL connected");
 });
 
 sqlConnect = () => {
@@ -62,7 +62,7 @@ inquirer
     }
 
     if (choices === "Add department") {
-      newDepartment();
+      newDepartments();
     }
 
     if (choices === "Add role") {
@@ -82,7 +82,7 @@ viewDepartments = () => {
   console.log("all departments...\n");
   const sql = `SELECT department.id AS id, department.name AS department FROM department`;
 
-  connection.promise().query(sql, (err, rows) => {
+  connection.promise(sql, (err, rows) => {
     if (err) throw err;
     console.table(rows);
     promptUser();
@@ -97,7 +97,7 @@ viewRoles = () => {
                  FROM role
                  INNER JOIN department ON role.department_id = department.id`;
 
-  connection.promise().query(sql, (err, rows) => {
+  connection.promise(sql, (err, rows) => {
     if (err) throw err;
     console.table(rows);
     promptUser();
@@ -118,7 +118,7 @@ showEmployees = () => {
                         LEFT JOIN role ON employee.role_id = role.id
                         LEFT JOIN department ON role.department_id = department.id
                         LEFT JOIN employee manager ON employee.manager_id = manager.id`;
-  connection.promise().query(sql, (err, rows) => {
+  connection.promise(sql, (err, rows) => {
     if (err) throw err;
     console.table(rows);
     promptUser();
@@ -146,7 +146,7 @@ Department = () => {
     .then((answer) => {
       const sql = `INSERT INTO department (name)
                     VALUES (?)`;
-      connection.query(sql, answer.addDept, (err, result) => {
+      connection.promise(sql, answer.addDept, (err, result) => {
         if (err) throw err;
         console.log("Added " + answer.addDept + " to departments!");
 
@@ -191,7 +191,7 @@ newRole = () => {
       
       const role4SQL = `SELECT name, id FROM department`; 
 
-      connection.promise().query(role4SQL, (err, data) => {
+      connection.promise(role4SQL, (err, data) => {
         if (err) throw err; 
     
         const dept = data.map(({ name, id }) => ({ name: name, value: id }));
@@ -211,7 +211,7 @@ newRole = () => {
             const sql = `INSERT INTO role (title, salary, department_id)
                         VALUES (?, ?, ?)`;
 
-            connection.query(sql, params, (err, result) => {
+            connection.promise(sql, params, (err, result) => {
               if (err) throw err;
               console.log('Added' + answer.role + " to roles!"); 
 
@@ -257,7 +257,7 @@ newEmployee = () => {
 // now we need to get the role of employeee //
     const role4SQL = `SELECT role.id, role.title FROM role`;
   
-    connection.promise().query(role4SQL, (err, data) => {
+    connection.promise(role4SQL, (err, data) => {
       if (err) throw err; 
       
       const roles = data.map(({ id, title }) => ({ name: title, value: id }));
@@ -276,7 +276,7 @@ newEmployee = () => {
 
               const managerSql = `SELECT * FROM employee`;
 
-              connection.promise().query(managerSql, (err, data) => {
+              connection.promise(managerSql, (err, data) => {
                 if (err) throw err;
 
                 const managers = data.map(({ id, first_name, last_name }) => ({ name: first_name + " "+ last_name, value: id }));
@@ -296,7 +296,7 @@ newEmployee = () => {
                     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id)
                     VALUES (?, ?, ?, ?)`;
 
-                    connection.query(sql, params, (err, result) => {
+                    connection.promise(sql, params, (err, result) => {
                     if (err) throw err;
                     console.log("Employee has been added!")
 
