@@ -1,5 +1,5 @@
 # Employee Tracker - MySQL
-![](./assets/Screen%20Shot%202022-07-22%20at%2011.28.04%20PM.png)
+![](./Screen%20Shot%202022-08-03%20at%2011.19.25%20PM.png)
 #
 ## Technologies used
 * Javascript 
@@ -23,4 +23,4 @@ When the application is started the user is presented with options such as view 
 ## Resources
 * [GitHub Repo](https://github.com/krosario314/employTracker)
 * [Kayla Rosario GitHub](https://github.com/krosario314)
-* [Video Submission]()
+* [Video Submission](https://drive.google.com/file/d/1RRzlM5rn5VkwH-utJiNF9lNvvX5po_uQ/view)
